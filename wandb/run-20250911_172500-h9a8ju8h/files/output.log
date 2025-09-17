@@ -1,0 +1,59 @@
+2025-09-11 17:25:03,315 [INFO ] +---------------------------------+----------------------------------------+----------------+----------+
+| Layer                           | Input Shape                            | Output Shape   | #Param   |
+|---------------------------------+----------------------------------------+----------------+----------|
+| GINe                            | [50614, 1], [2, 341148], [341148, 4]   | [341148, 2]    | 38,535   |
+| ├─(node_emb)Linear              | [50614, 1]                             | [50614, 66]    | 132      |
+| ├─(edge_emb)Linear              | [341148, 4]                            | [341148, 66]   | 330      |
+| ├─(convs)ModuleList             | --                                     | --             | 26,532   |
+| │    └─(0)GINEConv              | [50614, 66], [2, 341148], [341148, 66] | [50614, 66]    | 13,266   |
+| │    └─(1)GINEConv              | [50614, 66], [2, 341148], [341148, 66] | [50614, 66]    | 13,266   |
+| ├─(emlps)ModuleList             | --                                     | --             | --       |
+| ├─(batch_norms)ModuleList       | --                                     | --             | 264      |
+| │    └─(0)BatchNorm             | [50614, 66]                            | [50614, 66]    | 132      |
+| │    │    └─(module)BatchNorm1d | [50614, 66]                            | [50614, 66]    | 132      |
+| │    └─(1)BatchNorm             | [50614, 66]                            | [50614, 66]    | 132      |
+| │    │    └─(module)BatchNorm1d | [50614, 66]                            | [50614, 66]    | 132      |
+| ├─(mlp)Sequential               | [341148, 198]                          | [341148, 2]    | 11,277   |
+| │    └─(0)Linear                | [341148, 198]                          | [341148, 50]   | 9,950    |
+| │    └─(1)ReLU                  | [341148, 50]                           | [341148, 50]   | --       |
+| │    └─(2)Dropout               | [341148, 50]                           | [341148, 50]   | --       |
+| │    └─(3)Linear                | [341148, 50]                           | [341148, 25]   | 1,275    |
+| │    └─(4)ReLU                  | [341148, 25]                           | [341148, 25]   | --       |
+| │    └─(5)Dropout               | [341148, 25]                           | [341148, 25]   | --       |
+| │    └─(6)Linear                | [341148, 25]                           | [341148, 2]    | 52       |
++---------------------------------+----------------------------------------+----------------+----------+
+2025-09-11 17:30:05,491 [INFO ] Train F1: 0.0016
+Traceback (most recent call last):
+  File "/Users/leo/Desktop/AML/Multi-GNN/main.py", line 41, in <module>
+    main()
+  File "/Users/leo/Desktop/AML/Multi-GNN/main.py", line 34, in main
+    train_gnn(tr_data, val_data, te_data, tr_inds, val_inds, te_inds, args, data_config)
+  File "/Users/leo/Desktop/AML/Multi-GNN/training.py", line 235, in train_gnn
+    model = train_homo(tr_loader, val_loader, te_loader, tr_inds, val_inds, te_inds, model, optimizer, loss_fn, args, config, device, val_data, te_data, data_config)
+  File "/Users/leo/Desktop/AML/Multi-GNN/training.py", line 52, in train_homo
+    te_f1 = evaluate_homo(te_loader, te_inds, model, te_data, device, args)
+  File "/Users/leo/miniconda3/envs/multignn/lib/python3.9/site-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+    return func(*args, **kwargs)
+  File "/Users/leo/Desktop/AML/Multi-GNN/train_util.py", line 133, in evaluate_homo
+    out = model(batch.x, batch.edge_index, batch.edge_attr)
+  File "/Users/leo/miniconda3/envs/multignn/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/Users/leo/miniconda3/envs/multignn/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/Users/leo/Desktop/AML/Multi-GNN/models.py", line 55, in forward
+    return self.mlp(out)
+  File "/Users/leo/miniconda3/envs/multignn/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/Users/leo/miniconda3/envs/multignn/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/Users/leo/miniconda3/envs/multignn/lib/python3.9/site-packages/torch/nn/modules/container.py", line 219, in forward
+    input = module(input)
+  File "/Users/leo/miniconda3/envs/multignn/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/Users/leo/miniconda3/envs/multignn/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/Users/leo/miniconda3/envs/multignn/lib/python3.9/site-packages/torch/nn/modules/dropout.py", line 59, in forward
+    return F.dropout(input, self.p, self.training, self.inplace)
+  File "/Users/leo/miniconda3/envs/multignn/lib/python3.9/site-packages/torch/nn/functional.py", line 1295, in dropout
+    return _VF.dropout_(input, p, training) if inplace else _VF.dropout(input, p, training)
+KeyboardInterrupt

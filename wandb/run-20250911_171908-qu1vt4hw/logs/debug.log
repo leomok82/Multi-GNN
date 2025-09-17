@@ -1,0 +1,34 @@
+2025-09-11 17:19:08,407 INFO    MainThread:95492 [wandb_setup.py:_flush():80] Current SDK version is 0.21.1
+2025-09-11 17:19:08,407 INFO    MainThread:95492 [wandb_setup.py:_flush():80] Configure stats pid to 95492
+2025-09-11 17:19:08,407 INFO    MainThread:95492 [wandb_setup.py:_flush():80] Loading settings from /Users/leo/.config/wandb/settings
+2025-09-11 17:19:08,407 INFO    MainThread:95492 [wandb_setup.py:_flush():80] Loading settings from /Users/leo/Desktop/AML/Multi-GNN/wandb/settings
+2025-09-11 17:19:08,407 INFO    MainThread:95492 [wandb_setup.py:_flush():80] Loading settings from environment variables
+2025-09-11 17:19:08,407 INFO    MainThread:95492 [wandb_init.py:setup_run_log_directory():703] Logging user logs to /Users/leo/Desktop/AML/Multi-GNN/wandb/run-20250911_171908-qu1vt4hw/logs/debug.log
+2025-09-11 17:19:08,407 INFO    MainThread:95492 [wandb_init.py:setup_run_log_directory():704] Logging internal logs to /Users/leo/Desktop/AML/Multi-GNN/wandb/run-20250911_171908-qu1vt4hw/logs/debug-internal.log
+2025-09-11 17:19:08,407 INFO    MainThread:95492 [wandb_init.py:init():830] calling init triggers
+2025-09-11 17:19:08,407 INFO    MainThread:95492 [wandb_init.py:init():835] wandb.init called with sweep_config: {}
+config: {'epochs': 100, 'batch_size': 8192, 'model': 'gin', 'data': 'data', 'num_neighbors': [100, 100], 'lr': 0.006213266113989207, 'n_hidden': 66.00315515631006, 'n_gnn_layers': 2, 'loss': 'ce', 'w_ce1': 1.0000182882773443, 'w_ce2': 6.275014431494497, 'dropout': 0.00983468338330501, 'final_dropout': 0.10527690625126304, 'n_heads': None, '_wandb': {}}
+2025-09-11 17:19:08,407 INFO    MainThread:95492 [wandb_init.py:init():871] starting backend
+2025-09-11 17:19:09,865 INFO    MainThread:95492 [wandb_init.py:init():874] sending inform_init request
+2025-09-11 17:19:09,929 INFO    MainThread:95492 [wandb_init.py:init():882] backend started and connected
+2025-09-11 17:19:09,933 INFO    MainThread:95492 [wandb_init.py:init():953] updated telemetry
+2025-09-11 17:19:09,942 WARNING MsgRouterThr:95492 [router.py:message_loop():63] [no run ID] message_loop has been closed
+Traceback (most recent call last):
+  File "/Users/leo/miniconda3/envs/multignn/lib/python3.9/site-packages/wandb/sdk/interface/router_sock.py", line 27, in _read_message
+    return self._sock_client.read_server_response(timeout=1)
+  File "/Users/leo/miniconda3/envs/multignn/lib/python3.9/site-packages/wandb/sdk/lib/sock_client.py", line 227, in read_server_response
+    data = self._read_packet_bytes(timeout=timeout)
+  File "/Users/leo/miniconda3/envs/multignn/lib/python3.9/site-packages/wandb/sdk/lib/sock_client.py", line 212, in _read_packet_bytes
+    raise SockClientClosedError
+wandb.sdk.lib.sock_client.SockClientClosedError
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/leo/miniconda3/envs/multignn/lib/python3.9/site-packages/wandb/sdk/interface/router.py", line 56, in message_loop
+    msg = self._read_message()
+  File "/Users/leo/miniconda3/envs/multignn/lib/python3.9/site-packages/wandb/sdk/interface/router_sock.py", line 29, in _read_message
+    raise MessageRouterClosedError from e
+wandb.sdk.interface.router.MessageRouterClosedError
+2025-09-11 17:19:09,944 INFO    MsgRouterThr:95492 [mailbox.py:close():129] [no run ID] Closing mailbox, abandoning 0 handles.
+2025-09-11 17:19:09,970 INFO    MainThread:95492 [wandb_init.py:init():977] communicating run to backend with 90.0 second timeout

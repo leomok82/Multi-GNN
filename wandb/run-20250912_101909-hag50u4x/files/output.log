@@ -1,0 +1,51 @@
+2025-09-12 10:19:12,989 [INFO ] +---------------------------------+----------------------------------------+----------------+----------+
+| Layer                           | Input Shape                            | Output Shape   | #Param   |
+|---------------------------------+----------------------------------------+----------------+----------|
+| GINe                            | [50614, 1], [2, 341148], [341148, 4]   | [341148, 2]    | 38,535   |
+| ├─(node_emb)Linear              | [50614, 1]                             | [50614, 66]    | 132      |
+| ├─(edge_emb)Linear              | [341148, 4]                            | [341148, 66]   | 330      |
+| ├─(convs)ModuleList             | --                                     | --             | 26,532   |
+| │    └─(0)GINEConv              | [50614, 66], [2, 341148], [341148, 66] | [50614, 66]    | 13,266   |
+| │    └─(1)GINEConv              | [50614, 66], [2, 341148], [341148, 66] | [50614, 66]    | 13,266   |
+| ├─(emlps)ModuleList             | --                                     | --             | --       |
+| ├─(batch_norms)ModuleList       | --                                     | --             | 264      |
+| │    └─(0)BatchNorm             | [50614, 66]                            | [50614, 66]    | 132      |
+| │    │    └─(module)BatchNorm1d | [50614, 66]                            | [50614, 66]    | 132      |
+| │    └─(1)BatchNorm             | [50614, 66]                            | [50614, 66]    | 132      |
+| │    │    └─(module)BatchNorm1d | [50614, 66]                            | [50614, 66]    | 132      |
+| ├─(mlp)Sequential               | [341148, 198]                          | [341148, 2]    | 11,277   |
+| │    └─(0)Linear                | [341148, 198]                          | [341148, 50]   | 9,950    |
+| │    └─(1)ReLU                  | [341148, 50]                           | [341148, 50]   | --       |
+| │    └─(2)Dropout               | [341148, 50]                           | [341148, 50]   | --       |
+| │    └─(3)Linear                | [341148, 50]                           | [341148, 25]   | 1,275    |
+| │    └─(4)ReLU                  | [341148, 25]                           | [341148, 25]   | --       |
+| │    └─(5)Dropout               | [341148, 25]                           | [341148, 25]   | --       |
+| │    └─(6)Linear                | [341148, 25]                           | [341148, 2]    | 52       |
++---------------------------------+----------------------------------------+----------------+----------+
+2025-09-12 10:24:18,002 [INFO ] Train F1: 0.0016
+2025-09-12 10:26:02,620 [INFO ] Validation F1: 0.0000
+2025-09-12 10:26:02,621 [INFO ] Test F1: 0.0000
+2025-09-12 10:31:21,086 [INFO ] Train F1: 0.0000
+2025-09-12 10:33:23,683 [INFO ] Validation F1: 0.0000
+2025-09-12 10:33:23,685 [INFO ] Test F1: 0.0000
+Traceback (most recent call last):
+  File "/Users/leo/Desktop/AML/Multi-GNN/main.py", line 41, in <module>
+    main()
+  File "/Users/leo/Desktop/AML/Multi-GNN/main.py", line 34, in main
+    train_gnn(tr_data, val_data, te_data, tr_inds, val_inds, te_inds, args, data_config)
+  File "/Users/leo/Desktop/AML/Multi-GNN/training.py", line 235, in train_gnn
+    model = train_homo(tr_loader, val_loader, te_loader, tr_inds, val_inds, te_inds, model, optimizer, loss_fn, args, config, device, val_data, te_data, data_config)
+  File "/Users/leo/Desktop/AML/Multi-GNN/training.py", line 38, in train_homo
+    loss.backward()
+  File "/Users/leo/miniconda3/envs/multignn/lib/python3.9/site-packages/torch/_tensor.py", line 521, in backward
+    torch.autograd.backward(
+  File "/Users/leo/miniconda3/envs/multignn/lib/python3.9/site-packages/torch/autograd/__init__.py", line 289, in backward
+    _engine_run_backward(
+  File "/Users/leo/miniconda3/envs/multignn/lib/python3.9/site-packages/torch/autograd/graph.py", line 769, in _engine_run_backward
+    return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+KeyboardInterrupt
+Error in atexit._run_exitfuncs:
+Traceback (most recent call last):
+  File "/Users/leo/miniconda3/envs/multignn/lib/python3.9/threading.py", line 1080, in _wait_for_tstate_lock
+    if lock.acquire(block, timeout):
+KeyboardInterrupt

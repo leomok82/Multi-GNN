@@ -1,0 +1,59 @@
+2025-09-12 10:54:05,480 [INFO ] +---------------------------------+----------------------------------------+----------------+----------+
+| Layer                           | Input Shape                            | Output Shape   | #Param   |
+|---------------------------------+----------------------------------------+----------------+----------|
+| GINe                            | [50614, 1], [2, 341148], [341148, 4]   | [341148, 2]    | 38,535   |
+| ├─(node_emb)Linear              | [50614, 1]                             | [50614, 66]    | 132      |
+| ├─(edge_emb)Linear              | [341148, 4]                            | [341148, 66]   | 330      |
+| ├─(convs)ModuleList             | --                                     | --             | 26,532   |
+| │    └─(0)GINEConv              | [50614, 66], [2, 341148], [341148, 66] | [50614, 66]    | 13,266   |
+| │    └─(1)GINEConv              | [50614, 66], [2, 341148], [341148, 66] | [50614, 66]    | 13,266   |
+| ├─(emlps)ModuleList             | --                                     | --             | --       |
+| ├─(batch_norms)ModuleList       | --                                     | --             | 264      |
+| │    └─(0)BatchNorm             | [50614, 66]                            | [50614, 66]    | 132      |
+| │    │    └─(module)BatchNorm1d | [50614, 66]                            | [50614, 66]    | 132      |
+| │    └─(1)BatchNorm             | [50614, 66]                            | [50614, 66]    | 132      |
+| │    │    └─(module)BatchNorm1d | [50614, 66]                            | [50614, 66]    | 132      |
+| ├─(mlp)Sequential               | [341148, 198]                          | [341148, 2]    | 11,277   |
+| │    └─(0)Linear                | [341148, 198]                          | [341148, 50]   | 9,950    |
+| │    └─(1)ReLU                  | [341148, 50]                           | [341148, 50]   | --       |
+| │    └─(2)Dropout               | [341148, 50]                           | [341148, 50]   | --       |
+| │    └─(3)Linear                | [341148, 50]                           | [341148, 25]   | 1,275    |
+| │    └─(4)ReLU                  | [341148, 25]                           | [341148, 25]   | --       |
+| │    └─(5)Dropout               | [341148, 25]                           | [341148, 25]   | --       |
+| │    └─(6)Linear                | [341148, 25]                           | [341148, 2]    | 52       |
++---------------------------------+----------------------------------------+----------------+----------+
+Traceback (most recent call last):
+  File "/Users/leo/Desktop/AML/Multi-GNN/main.py", line 41, in <module>
+    main()
+  File "/Users/leo/Desktop/AML/Multi-GNN/main.py", line 34, in main
+    train_gnn(tr_data, val_data, te_data, tr_inds, val_inds, te_inds, args, data_config)
+  File "/Users/leo/Desktop/AML/Multi-GNN/training.py", line 235, in train_gnn
+    model = train_homo(tr_loader, val_loader, te_loader, tr_inds, val_inds, te_inds, model, optimizer, loss_fn, args, config, device, val_data, te_data, data_config)
+  File "/Users/leo/Desktop/AML/Multi-GNN/training.py", line 31, in train_homo
+    out = model(batch.x, batch.edge_index, batch.edge_attr)
+  File "/Users/leo/miniconda3/envs/multignn/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/Users/leo/miniconda3/envs/multignn/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/Users/leo/Desktop/AML/Multi-GNN/models.py", line 47, in forward
+    x = (x + F.relu(self.batch_norms[i](self.convs[i](x, edge_index, edge_attr)))) / 2
+  File "/Users/leo/miniconda3/envs/multignn/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/Users/leo/miniconda3/envs/multignn/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/Users/leo/miniconda3/envs/multignn/lib/python3.9/site-packages/torch_geometric/nn/conv/gin_conv.py", line 187, in forward
+    out = self.propagate(edge_index, x=x, edge_attr=edge_attr, size=size)
+  File "/var/folders/b1/txv9mww1563gq58xwb8zkkg40000gn/T/torch_geometric.nn.conv.gin_conv_GINEConv_propagate__unnhqb6.py", line 157, in propagate
+    kwargs = self.collect(
+  File "/var/folders/b1/txv9mww1563gq58xwb8zkkg40000gn/T/torch_geometric.nn.conv.gin_conv_GINEConv_propagate__unnhqb6.py", line 92, in collect
+    x_j = self._index_select(_x_0, edge_index_j)
+  File "/Users/leo/miniconda3/envs/multignn/lib/python3.9/site-packages/torch_geometric/nn/conv/message_passing.py", line 267, in _index_select
+    return self._index_select_safe(src, index)
+  File "/Users/leo/miniconda3/envs/multignn/lib/python3.9/site-packages/torch_geometric/nn/conv/message_passing.py", line 271, in _index_select_safe
+    return src.index_select(self.node_dim, index)
+KeyboardInterrupt
+Error in atexit._run_exitfuncs:
+Traceback (most recent call last):
+  File "/Users/leo/miniconda3/envs/multignn/lib/python3.9/threading.py", line 1080, in _wait_for_tstate_lock
+    if lock.acquire(block, timeout):
+KeyboardInterrupt

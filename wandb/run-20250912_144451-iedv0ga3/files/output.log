@@ -1,0 +1,93 @@
+2025-09-12 14:44:54,080 [INFO ] +---------------------------------+----------------------------------------+----------------+----------+
+| Layer                           | Input Shape                            | Output Shape   | #Param   |
+|---------------------------------+----------------------------------------+----------------+----------|
+| GINe                            | [50614, 1], [2, 341148], [341148, 4]   | [341148, 2]    | 38,535   |
+| ├─(node_emb)Linear              | [50614, 1]                             | [50614, 66]    | 132      |
+| ├─(edge_emb)Linear              | [341148, 4]                            | [341148, 66]   | 330      |
+| ├─(convs)ModuleList             | --                                     | --             | 26,532   |
+| │    └─(0)GINEConv              | [50614, 66], [2, 341148], [341148, 66] | [50614, 66]    | 13,266   |
+| │    └─(1)GINEConv              | [50614, 66], [2, 341148], [341148, 66] | [50614, 66]    | 13,266   |
+| ├─(emlps)ModuleList             | --                                     | --             | --       |
+| ├─(batch_norms)ModuleList       | --                                     | --             | 264      |
+| │    └─(0)BatchNorm             | [50614, 66]                            | [50614, 66]    | 132      |
+| │    │    └─(module)BatchNorm1d | [50614, 66]                            | [50614, 66]    | 132      |
+| │    └─(1)BatchNorm             | [50614, 66]                            | [50614, 66]    | 132      |
+| │    │    └─(module)BatchNorm1d | [50614, 66]                            | [50614, 66]    | 132      |
+| ├─(mlp)Sequential               | [341148, 198]                          | [341148, 2]    | 11,277   |
+| │    └─(0)Linear                | [341148, 198]                          | [341148, 50]   | 9,950    |
+| │    └─(1)ReLU                  | [341148, 50]                           | [341148, 50]   | --       |
+| │    └─(2)Dropout               | [341148, 50]                           | [341148, 50]   | --       |
+| │    └─(3)Linear                | [341148, 50]                           | [341148, 25]   | 1,275    |
+| │    └─(4)ReLU                  | [341148, 25]                           | [341148, 25]   | --       |
+| │    └─(5)Dropout               | [341148, 25]                           | [341148, 25]   | --       |
+| │    └─(6)Linear                | [341148, 25]                           | [341148, 2]    | 52       |
++---------------------------------+----------------------------------------+----------------+----------+
+2025-09-12 14:50:00,906 [INFO ] Train F1: 0.0016
+2025-09-12 14:51:42,973 [INFO ] Validation F1: 0.0000
+2025-09-12 14:51:42,973 [INFO ] Test F1: 0.0000
+2025-09-12 14:56:48,430 [INFO ] Train F1: 0.0000
+2025-09-12 14:58:28,936 [INFO ] Validation F1: 0.0000
+2025-09-12 14:58:28,938 [INFO ] Test F1: 0.0000
+2025-09-12 15:03:27,862 [INFO ] Train F1: 0.0000
+2025-09-12 15:05:08,017 [INFO ] Validation F1: 0.0000
+2025-09-12 15:05:08,019 [INFO ] Test F1: 0.0000
+2025-09-12 15:10:10,131 [INFO ] Train F1: 0.0000
+2025-09-12 15:11:51,815 [INFO ] Validation F1: 0.0000
+2025-09-12 15:11:51,817 [INFO ] Test F1: 0.0000
+2025-09-12 15:16:44,418 [INFO ] Train F1: 0.0623
+2025-09-12 15:18:21,788 [INFO ] Validation F1: 0.1564
+2025-09-12 15:18:21,789 [INFO ] Test F1: 0.2378
+2025-09-12 15:26:33,796 [INFO ] Train F1: 0.1442
+2025-09-12 15:28:18,217 [INFO ] Validation F1: 0.1703
+2025-09-12 15:28:18,219 [INFO ] Test F1: 0.1869
+2025-09-12 15:33:17,452 [INFO ] Train F1: 0.1794
+2025-09-12 15:35:00,462 [INFO ] Validation F1: 0.2015
+2025-09-12 15:35:00,463 [INFO ] Test F1: 0.2923
+2025-09-12 15:39:55,190 [INFO ] Train F1: 0.2095
+2025-09-12 15:41:32,273 [INFO ] Validation F1: 0.2243
+2025-09-12 15:41:32,274 [INFO ] Test F1: 0.2594
+2025-09-12 15:46:41,687 [INFO ] Train F1: 0.2328
+2025-09-12 15:48:27,130 [INFO ] Validation F1: 0.2594
+2025-09-12 15:48:27,132 [INFO ] Test F1: 0.2718
+2025-09-12 15:53:53,291 [INFO ] Train F1: 0.2509
+2025-09-12 15:55:32,415 [INFO ] Validation F1: 0.2522
+2025-09-12 15:55:32,418 [INFO ] Test F1: 0.2534
+2025-09-12 16:00:43,644 [INFO ] Train F1: 0.2836
+2025-09-12 16:02:26,838 [INFO ] Validation F1: 0.2268
+2025-09-12 16:02:26,840 [INFO ] Test F1: 0.2625
+2025-09-12 16:07:31,571 [INFO ] Train F1: 0.2880
+2025-09-12 16:09:13,164 [INFO ] Validation F1: 0.2220
+2025-09-12 16:09:13,166 [INFO ] Test F1: 0.1893
+2025-09-12 16:14:21,063 [INFO ] Train F1: 0.2933
+2025-09-12 16:16:05,434 [INFO ] Validation F1: 0.1804
+2025-09-12 16:16:05,435 [INFO ] Test F1: 0.1683
+2025-09-12 16:21:07,333 [INFO ] Train F1: 0.3111
+2025-09-12 16:22:49,120 [INFO ] Validation F1: 0.2066
+2025-09-12 16:22:49,122 [INFO ] Test F1: 0.1949
+2025-09-12 16:27:53,934 [INFO ] Train F1: 0.3249
+2025-09-12 16:29:37,378 [INFO ] Validation F1: 0.2179
+2025-09-12 16:29:37,381 [INFO ] Test F1: 0.2553
+2025-09-12 16:34:39,432 [INFO ] Train F1: 0.3215
+2025-09-12 16:36:20,710 [INFO ] Validation F1: 0.3054
+2025-09-12 16:36:20,712 [INFO ] Test F1: 0.2448
+Traceback (most recent call last):
+  File "/Users/leo/Desktop/AML/Multi-GNN/main.py", line 41, in <module>
+    main()
+  File "/Users/leo/Desktop/AML/Multi-GNN/main.py", line 34, in main
+    train_gnn(tr_data, val_data, te_data, tr_inds, val_inds, te_inds, args, data_config)
+  File "/Users/leo/Desktop/AML/Multi-GNN/training.py", line 235, in train_gnn
+    model = train_homo(tr_loader, val_loader, te_loader, tr_inds, val_inds, te_inds, model, optimizer, loss_fn, args, config, device, val_data, te_data, data_config)
+  File "/Users/leo/Desktop/AML/Multi-GNN/training.py", line 31, in train_homo
+    out = model(batch.x, batch.edge_index, batch.edge_attr)
+  File "/Users/leo/miniconda3/envs/multignn/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/Users/leo/miniconda3/envs/multignn/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/Users/leo/Desktop/AML/Multi-GNN/models.py", line 52, in forward
+    x = torch.cat((x, edge_attr.view(-1, edge_attr.shape[1])), 1)
+KeyboardInterrupt
+Error in atexit._run_exitfuncs:
+Traceback (most recent call last):
+  File "/Users/leo/miniconda3/envs/multignn/lib/python3.9/threading.py", line 1080, in _wait_for_tstate_lock
+    if lock.acquire(block, timeout):
+KeyboardInterrupt
