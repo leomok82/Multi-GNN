@@ -14,6 +14,9 @@ script_start = time.time()
 def infer_gnn(tr_data, val_data, te_data, tr_inds, val_inds, te_inds, args, data_config):
     #set device
     device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+    if device == 'cpu':
+        device = 'mps'
+        print(device, 'enabled')
 
     #define a model config dictionary and wandb logging at the same time
     wandb.init(
@@ -58,14 +61,14 @@ def infer_gnn(tr_data, val_data, te_data, tr_inds, val_inds, te_inds, args, data
     if args.reverse_mp:
         model = to_hetero(model, te_data.metadata(), aggr='mean')
     
-    if not (args.avg_tps or args.finetune):
-        command = " ".join(sys.argv)
-        name = ""
-        name = '-'.join(name.split('-')[3:])
-        args.unique_name = name
+    # if not ( args.finetune):
+    #     command = " ".join(sys.argv)
+    #     name = ""
+    #     name = '-'.join(name.split('-')[3:])
+    #     args.unique_name = name
 
     logging.info("=> loading model checkpoint")
-    checkpoint = torch.load(f'{data_config["paths"]["model_to_load"]}/checkpoint_{args.unique_name}.tar')
+    checkpoint = torch.load(f'{data_config["paths"]["model_to_load"]}/checkpoint_{args.unique_name}.tar', map_location=device)
     start_epoch = checkpoint['epoch']
     model.load_state_dict(checkpoint['model_state_dict'])
     model.to(device)
@@ -75,6 +78,6 @@ def infer_gnn(tr_data, val_data, te_data, tr_inds, val_inds, te_inds, args, data
     if not args.reverse_mp:
         te_f1, te_prec, te_rec = evaluate_homo(te_loader, te_inds, model, te_data, device, args, precrec=True)
     else:
-        te_f1, te_prec, te_rec = evaluate_hetero(te_loader, te_inds, model, te_data, device, args, precrec=True)
+        te_f1, te_prec, te_rec = evaluate_hetero(te_loader, te_inds, model, te_data, device, args)
 
     wandb.finish()

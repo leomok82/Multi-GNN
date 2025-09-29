@@ -1,7 +1,7 @@
 {
     "paths": {
       "aml_data": "/Users/leo/Desktop/AML/", 
-      "model_to_load": "/path/to/model_you_want_to_load (e.g for inference or fine-tuning)",
+      "model_to_load": "/Users/leo/Desktop/AML/Multi-GNN/models",
       "model_to_save": "/Users/leo/Desktop/AML/Multi-GNN/models"
     }
   }

@@ -1,0 +1,10 @@
+/Users/leo/Desktop/AML/Multi-GNN/inference.py:71: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  checkpoint = torch.load(f'{data_config["paths"]["model_to_load"]}/checkpoint_{args.unique_name}.tar', map_location=device)
+Traceback (most recent call last):
+  File "/Users/leo/Desktop/AML/Multi-GNN/main.py", line 42, in <module>
+    main()
+  File "/Users/leo/Desktop/AML/Multi-GNN/main.py", line 39, in main
+    infer_gnn(tr_data, val_data, te_data, tr_inds, val_inds, te_inds, args, data_config)
+  File "/Users/leo/Desktop/AML/Multi-GNN/inference.py", line 81, in infer_gnn
+    te_f1, te_prec, te_rec = evaluate_hetero(te_loader, te_inds, model, te_data, device, args)
+TypeError: cannot unpack non-iterable numpy.float64 object

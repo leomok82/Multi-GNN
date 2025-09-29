@@ -1,0 +1,49 @@
+{
+  "os": "macOS-14.3-arm64-arm-64bit",
+  "python": "CPython 3.9.23",
+  "startedAt": "2025-09-29T08:41:41.740816Z",
+  "args": [
+    "--inference",
+    "--data",
+    "data",
+    "--model",
+    "gin",
+    "--emlps",
+    "--reverse_mp",
+    "--ports",
+    "--unique_name",
+    "edge"
+  ],
+  "program": "/Users/leo/Desktop/AML/Multi-GNN/main.py",
+  "codePath": "main.py",
+  "codePathLocal": "main.py",
+  "git": {
+    "remote": "https://github.com/leomok82/Multi-GNN.git",
+    "commit": "74086b4da491002a575e7a5db3133ed2e7a06b3f"
+  },
+  "email": "mokleo0208@gmail.com",
+  "root": "/Users/leo/Desktop/AML/Multi-GNN",
+  "host": "leos-mbp.hk.ibm.com",
+  "executable": "/Users/leo/miniconda3/envs/multignn/bin/python",
+  "cpu_count": 8,
+  "cpu_count_logical": 8,
+  "disk": {
+    "/": {
+      "total": "494384795648",
+      "used": "195677708288"
+    }
+  },
+  "memory": {
+    "total": "17179869184"
+  },
+  "apple": {
+    "name": "Apple M1 Pro",
+    "ecpuCores": 2,
+    "pcpuCores": 6,
+    "gpuCores": 14,
+    "memoryGb": 16,
+    "swapTotalBytes": "4294967296",
+    "ramTotalBytes": "17179869184"
+  },
+  "writerId": "jcy36tz1rc46lnzlbv35m5yr5in37ume"
+}

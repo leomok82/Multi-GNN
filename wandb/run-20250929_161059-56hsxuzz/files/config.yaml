@@ -1,0 +1,92 @@
+_wandb:
+    value:
+        cli_version: 0.21.1
+        e:
+            6yvyb2mbchjf7lm8k585pjihybeg6vip:
+                apple:
+                    ecpuCores: 2
+                    gpuCores: 14
+                    memoryGb: 16
+                    name: Apple M1 Pro
+                    pcpuCores: 6
+                    ramTotalBytes: "17179869184"
+                    swapTotalBytes: "3221225472"
+                args:
+                    - --inference
+                    - --data
+                    - data
+                    - --model
+                    - edge
+                codePath: main.py
+                codePathLocal: main.py
+                cpu_count: 8
+                cpu_count_logical: 8
+                disk:
+                    /:
+                        total: "494384795648"
+                        used: "194591268864"
+                email: mokleo0208@gmail.com
+                executable: /Users/leo/miniconda3/envs/multignn/bin/python
+                git:
+                    commit: 74086b4da491002a575e7a5db3133ed2e7a06b3f
+                    remote: https://github.com/leomok82/Multi-GNN.git
+                host: leos-mbp.hk.ibm.com
+                memory:
+                    total: "17179869184"
+                os: macOS-14.3-arm64-arm-64bit
+                program: /Users/leo/Desktop/AML/Multi-GNN/main.py
+                python: CPython 3.9.23
+                root: /Users/leo/Desktop/AML/Multi-GNN
+                startedAt: "2025-09-29T08:10:59.455844Z"
+                writerId: 6yvyb2mbchjf7lm8k585pjihybeg6vip
+        m: []
+        python_version: 3.9.23
+        t:
+            "1":
+                - 1
+                - 5
+                - 53
+                - 77
+            "2":
+                - 1
+                - 5
+                - 53
+                - 77
+            "3":
+                - 16
+            "4": 3.9.23
+            "5": 0.21.1
+            "8":
+                - 2
+            "12": 0.21.1
+            "13": darwin-arm64
+batch_size:
+    value: 8192
+data:
+    value: data
+dropout:
+    value: null
+epochs:
+    value: 100
+final_dropout:
+    value: null
+loss:
+    value: ce
+lr:
+    value: null
+model:
+    value: edge
+n_gnn_layers:
+    value: null
+n_heads:
+    value: null
+n_hidden:
+    value: null
+num_neighbors:
+    value:
+        - 100
+        - 100
+w_ce1:
+    value: null
+w_ce2:
+    value: null

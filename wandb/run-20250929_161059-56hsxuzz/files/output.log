@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "/Users/leo/Desktop/AML/Multi-GNN/main.py", line 41, in <module>
+    main()
+  File "/Users/leo/Desktop/AML/Multi-GNN/main.py", line 38, in main
+    infer_gnn(tr_data, val_data, te_data, tr_inds, val_inds, te_inds, args, data_config)
+  File "/Users/leo/Desktop/AML/Multi-GNN/inference.py", line 56, in infer_gnn
+    model = get_model(sample_batch, config, args)
+  File "/Users/leo/Desktop/AML/Multi-GNN/training.py", line 164, in get_model
+    return model
+UnboundLocalError: local variable 'model' referenced before assignment

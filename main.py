@@ -12,6 +12,8 @@ def main():
 
     with open('data_config.json', 'r') as config_file:
         data_config = json.load(config_file)
+    logging.info(f"Unique name: {args.unique_name}")
+    print(f"Unique name: {args.unique_name}")
 
     # Setup logging
     logger_setup()
@@ -27,7 +29,6 @@ def main():
     
     t2 = time.perf_counter()
     logging.info(f"Retrieved data in {t2-t1:.2f}s")
-
     if not args.inference:
         #Training
         logging.info(f"Running Training")

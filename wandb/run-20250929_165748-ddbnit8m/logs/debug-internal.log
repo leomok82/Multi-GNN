@@ -1,0 +1,11 @@
+{"time":"2025-09-29T16:57:48.718592+08:00","level":"INFO","msg":"stream: starting","core version":"0.21.1"}
+{"time":"2025-09-29T16:57:49.289249+08:00","level":"INFO","msg":"stream: created new stream","id":"ddbnit8m"}
+{"time":"2025-09-29T16:57:49.289291+08:00","level":"INFO","msg":"stream: started","id":"ddbnit8m"}
+{"time":"2025-09-29T16:57:49.289344+08:00","level":"INFO","msg":"handler: started","stream_id":"ddbnit8m"}
+{"time":"2025-09-29T16:57:49.289518+08:00","level":"INFO","msg":"sender: started","stream_id":"ddbnit8m"}
+{"time":"2025-09-29T16:57:49.289547+08:00","level":"INFO","msg":"writer: started","stream_id":"ddbnit8m"}
+{"time":"2025-09-29T16:57:52.034716+08:00","level":"INFO","msg":"stream: closing","id":"ddbnit8m"}
+{"time":"2025-09-29T16:57:53.497075+08:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-09-29T16:57:53.896276+08:00","level":"INFO","msg":"handler: closed","stream_id":"ddbnit8m"}
+{"time":"2025-09-29T16:57:53.896828+08:00","level":"INFO","msg":"sender: closed","stream_id":"ddbnit8m"}
+{"time":"2025-09-29T16:57:53.89687+08:00","level":"INFO","msg":"stream: closed","id":"ddbnit8m"}
