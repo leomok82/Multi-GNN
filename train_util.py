@@ -171,9 +171,9 @@ def evaluate_hetero(loader, inds, model, data, device, args):
             batch['node', 'to', 'node'].y = torch.cat((batch['node', 'to', 'node'].y, add_y), 0)
 
             mask = torch.cat((mask, torch.ones(add_y.shape[0], dtype=torch.bool)))
-        print('batch edge keys:', list(batch['node','to','node'].keys()))
+        # print('batch edge keys:', list(batch['node','to','node'].keys()))
 
-        unique_edge_id = batch['node', 'to', 'node'].edge_attr[:, 0].detach().cpu()
+        unique_edge_id = batch['node', 'to', 'node'].e_id
         #remove the unique edge id from the edge features, as it's no longer needed
         batch['node', 'to', 'node'].edge_attr = batch['node', 'to', 'node'].edge_attr[:, 1:]
         batch['node', 'rev_to', 'node'].edge_attr = batch['node', 'rev_to', 'node'].edge_attr[:, 1:]
@@ -192,7 +192,7 @@ def evaluate_hetero(loader, inds, model, data, device, args):
     ground_truth = torch.cat(ground_truths, dim=0).cpu().numpy()
     ids = torch.cat(ids, dim=0).cpu().numpy()
     import pandas as pd
-    pd.DataFrame({'ID': ids.reshape(1,-1)[0], 'pred': pred.reshape(1,-1)[0]}).to_csv('hetero_preds.csv', index=False)
+    pd.DataFrame({'ID': ids.tolist(), 'pred': pred.tolist()}).to_csv('hetero_preds.csv', index=False)
 
 
     f1 = f1_score(ground_truth, pred)

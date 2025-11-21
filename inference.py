@@ -76,8 +76,8 @@ def infer_gnn(tr_data, val_data, te_data, tr_inds, val_inds, te_inds, args, data
     logging.info("=> loaded checkpoint (epoch {})".format(start_epoch))
 
     if not args.reverse_mp:
-        te_f1, te_prec, te_rec = evaluate_homo(te_loader, te_inds, model, te_data, device, args, precrec=True)
+        te_f1 = evaluate_homo(te_loader, te_inds, model, te_data, device, args, precrec=True)
     else:
-        te_f1, te_prec, te_rec = evaluate_hetero(te_loader, te_inds, model, te_data, device, args)
-
+        te_f1= evaluate_hetero(te_loader, te_inds, model, te_data, device, args)
+    print(te_f1)
     wandb.finish()
